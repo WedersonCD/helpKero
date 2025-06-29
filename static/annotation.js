@@ -5,6 +5,49 @@ const pdfCtx      = pdfCanvas.getContext('2d');
 // Enable selection for multi-select
 const fabricCanvas = new fabric.Canvas(drawCanvas, { selection: true, backgroundColor: 'transparent' });
 
+let isCtrlDown = false;
+let clipboard = [];
+
+document.addEventListener('keydown', e => {
+    if (e.key === 'Control') isCtrlDown = true;
+});
+
+document.addEventListener('keyup', e => {
+    if (e.key === 'Control') isCtrlDown = false;
+});
+
+// Keyboard helpers (copy/paste & arrows)
+document.addEventListener('keydown', e => {
+    const objs = fabricCanvas.getActiveObjects();
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'c') {
+        clipboard = objs.map(o => o.clone());
+        e.preventDefault();
+        return;
+    }
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'v') {
+        clipboard.forEach(cl => {
+            cl.clone(c => {
+                c.set({ left: c.left + 20, top: c.top + 20 });
+                fabricCanvas.add(c);
+            });
+        });
+        fabricCanvas.discardActiveObject();
+        fabricCanvas.renderAll();
+        updateBoxList();
+        e.preventDefault();
+        return;
+    }
+    if (objs.length > 0) {
+        let moved = false;
+        const step = e.shiftKey ? 10 : 1;
+        if (e.key === 'ArrowLeft')  { objs.forEach(o => { o.left -= step; o.setCoords(); }); moved=true; }
+        if (e.key === 'ArrowRight') { objs.forEach(o => { o.left += step; o.setCoords(); }); moved=true; }
+        if (e.key === 'ArrowUp')    { objs.forEach(o => { o.top  -= step; o.setCoords(); }); moved=true; }
+        if (e.key === 'ArrowDown')  { objs.forEach(o => { o.top  += step; o.setCoords(); }); moved=true; }
+        if (moved) { fabricCanvas.renderAll(); updateBoxList(); e.preventDefault(); }
+    }
+});
+
 let pdfDoc=null, pageNum=1, scale=1.2;
 
 function renderPage(num){

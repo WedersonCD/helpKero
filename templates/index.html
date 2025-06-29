@@ -6,10 +6,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"/>
     <style>
         body{font-family:Arial, sans-serif;margin:0;padding:0;}
-        #toolbar{background:#333;color:#fff;padding:8px;}
-        #canvas-container{position:relative;width:100%;text-align:center;}
+        #toolbar{background:#333;color:#fff;padding:8px;display:flex;gap:10px;align-items:center;}
+        #instructions{font-size:0.8em;color:#ddd;margin-left:auto;}
+        #canvas-container{position:relative;width:100%;text-align:center;margin-top:10px;}
         canvas{border:1px solid #999;}
-        #box-list{max-height:150px;overflow:auto;font-size:0.9em;}
+        #box-list{max-height:150px;overflow:auto;font-size:0.9em;margin-top:10px;}
         .hidden{display:none;}
     </style>
 </head>
@@ -17,7 +18,8 @@
 <div id="toolbar">
     <button onclick="showAnnotate()">Annotate</button>
     <button onclick="showExtract()">Extract</button>
-    <button onclick="duplicateBox()">Duplicate Box</button>
+    <button onclick="duplicateBox()">Copy Selected</button>
+    <span id="instructions">Ctrl+click to multi-select &mdash; use arrows to move, Ctrl+C/Ctrl+V to copy</span>
 </div>
 <!-- Annotate Mode -->
 <div id="annotate-pane">
@@ -32,6 +34,7 @@
     </div>
     <h3>Boxes</h3>
     <div id="box-list"></div>
+    <p style="font-size:0.8em;color:#555;margin-top:10px;">Draw rectangles to create boxes. Use the toolbar tips for copy and movement.</p>
 </div>
 <!-- Extract Mode -->
 <div id="extract-pane" class="hidden">
