@@ -1,0 +1,38 @@
+File: tabela-periodica.pdf
+Page: 0
+Box: 1
+Layout: 123a
+Text: 102,91 1
+77 78
+Ir
+irídio p
+192,22 1
+109 110
+----------------------------------------
+File: tabela-periodica.pdf
+Page: 0
+Box: 3
+Layout: 123a
+Text: GRUPO
+1
+----------------------------------------
+File: tabela-periodica.pdf
+Page: 0
+Box: 5
+Layout: 123a
+Text: 41 42
+Nb M
+nióbio mol
+92,906
+73 74
+Ta
+----------------------------------------
+File: tabela-periodica.pdf
+Page: 0
+Box: 6
+Layout: 123a
+Text: 67
+Ho
+io hólmio
+164,93
+----------------------------------------

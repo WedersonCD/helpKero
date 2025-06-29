@@ -1,0 +1,15 @@
+File: tabela-periodica.pdf
+Page: 0
+Box: 1
+Layout: 11111
+Text: Tabela Periódica
+----------------------------------------
+File: tabela-periodica.pdf
+Page: 0
+Box: 2
+Layout: 11111
+Text: 2
+He
+hélio
+4,0026
+----------------------------------------

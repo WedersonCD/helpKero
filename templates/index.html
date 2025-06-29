@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>PDF Box Annotator & Extractor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"/>
+    <style>
+        body{font-family:Arial, sans-serif;margin:0;padding:0;}
+        #toolbar{background:#333;color:#fff;padding:8px;}
+        #canvas-container{position:relative;width:100%;text-align:center;}
+        canvas{border:1px solid #999;}
+        #box-list{max-height:150px;overflow:auto;font-size:0.9em;}
+        .hidden{display:none;}
+    </style>
+</head>
+<body>
+<div id="toolbar">
+    <button onclick="showAnnotate()">Annotate</button>
+    <button onclick="showExtract()">Extract</button>
+    <button onclick="duplicateBox()">Duplicate Box</button>
+</div>
+<!-- Annotate Mode -->
+<div id="annotate-pane">
+    <input type="file" id="pdf-file" accept=".pdf"/>
+    <button onclick="prevPage()">Prev</button><span id="page-num">0</span>/<span id="page-count">0</span>
+    <button onclick="nextPage()">Next</button>
+    <button onclick="saveLayout()">Save layout</button>
+    <input placeholder="layout name" id="layout-name"/>
+    <div id="canvas-container" style="position:relative;text-align:center;">
+        <canvas id="pdf-canvas" style="position:absolute;left:0;top:0;"></canvas>
+        <canvas id="draw-canvas" style="position:absolute;left:0;top:0;"></canvas>
+    </div>
+    <h3>Boxes</h3>
+    <div id="box-list"></div>
+</div>
+<!-- Extract Mode -->
+<div id="extract-pane" class="hidden">
+    <select id="layout-select"></select>
+    <input type="file" id="pdf-batch" accept=".pdf" multiple/>
+    <button onclick="runExtract()">Extract</button>
+    <div id="download-link"></div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+<script>
+  pdfjsLib.GlobalWorkerOptions.workerSrc =
+    "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js";
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="/static/annotation.js"></script>
+
+</body>
+</html>
